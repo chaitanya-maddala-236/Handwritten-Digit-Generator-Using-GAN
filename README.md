@@ -1,27 +1,28 @@
-# Handwritten Digit Generator
+# Handwritten Digit Generator Using GAN
 
 A web application that generates handwritten-style digits (0-9) using a Generative Adversarial Network (GAN) trained on the MNIST dataset.
 
 ## 🚀 Live Demo
 
-[Deploy your app to Streamlit Cloud and add the link here]
+**[Try the Live App Here](https://japanmetiai.streamlit.app/)**
 
-## 📋 Features
+## ✨ Features
 
-- **Interactive Digit Selection**: Choose any digit from 0-9
-- **Batch Generation**: Creates 5 unique variations per digit
-- **Real-time Display**: View generated images instantly
-- **MNIST-style Output**: 28×28 grayscale images similar to MNIST dataset
-- **Responsive Design**: Works on desktop and mobile devices
+- **Interactive Digit Selection**: Choose any digit from 0-9 with intuitive button interface
+- **Batch Generation**: Creates 5 unique variations per digit for comparison
+- **Real-time Display**: View generated images instantly with no waiting
+- **MNIST-style Output**: Produces 28×28 grayscale images similar to the MNIST dataset
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **High-Quality Generation**: Creates diverse, recognizable handwritten digits
 
-## 🏗️ Architecture
+## 🧠 Model Architecture
 
-### Model Details
-- **Type**: Conditional GAN (cGAN)
+### GAN Type
+- **Model**: Conditional GAN (cGAN)
 - **Framework**: PyTorch
 - **Dataset**: MNIST (60,000 training images)
 - **Training**: 50 epochs on Google Colab T4 GPU
-- **Generator Input**: 100D noise vector + digit label
+- **Input**: 100D noise vector + digit label
 - **Output**: 28×28 grayscale images
 
 ### Generator Architecture
@@ -52,7 +53,7 @@ Linear(512, 256) + LeakyReLU + Dropout(0.3)
 Linear(256, 1) + Sigmoid
 ```
 
-## 📁 File Structure
+## 📁 Project Structure
 
 ```
 digit-generator/
@@ -63,34 +64,45 @@ digit-generator/
 └── README.md               # This file
 ```
 
-## 🛠️ Installation & Setup
+## 🔧 Installation & Setup
 
-### Step 1: Train the Model
+### Option 1: Run Locally
 
-1. **Open Google Colab** and create a new notebook
-2. **Upload `mnist_gan_training.py`** to Colab
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/chaitanya-maddala-236/Handwritten-Digit-Generator-Using-GAN.git
+   cd Handwritten-Digit-Generator-Using-GAN
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application**
+   ```bash
+   streamlit run app.py
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:8501
+   ```
+
+### Option 2: Train Your Own Model
+
+1. **Open Google Colab and create a new notebook**
+2. **Upload `mnist_gan_training.py` to Colab**
 3. **Run the training script**:
    ```python
    !python mnist_gan_training.py
    ```
-4. **Download the generated `generator.pth`** file
+4. **Download the generated `generator.pth` file**
 5. **Training time**: ~2-3 hours on T4 GPU
 
-### Step 2: Local Testing
+## 🌐 Deployment
 
-1. **Clone/download** this repository
-2. **Place the `generator.pth`** file in the same directory
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Run the app**:
-   ```bash
-   streamlit run app.py
-   ```
-5. **Open browser** to `http://localhost:8501`
-
-### Step 3: Deploy to Streamlit Cloud
+### Deploy on Streamlit Cloud
 
 1. **Push to GitHub**:
    ```bash
@@ -107,9 +119,9 @@ digit-generator/
    - Set main file: `app.py`
    - Click "Deploy"
 
-3. **Public Access**: Your app will be available at a public URL for 2+ weeks
+3. **Public Access**: Your app will be available at a public URL
 
-## 🎯 Usage
+## 🎯 How to Use
 
 1. **Visit the web app** (local or deployed URL)
 2. **Select a digit** (0-9) by clicking the digit buttons
@@ -117,7 +129,7 @@ digit-generator/
 4. **View results** - both enlarged and original 28×28 versions
 5. **Try different digits** to see various generation results
 
-## 📊 Performance
+## ⚡ Performance
 
 - **Generation Time**: 1-3 seconds per batch of 5 images
 - **Model Size**: ~2.5MB (generator.pth)
@@ -125,49 +137,50 @@ digit-generator/
 - **Cold Start**: 10-30 seconds (first load)
 - **Concurrent Users**: Supports multiple users simultaneously
 
-## 🔧 Technical Requirements
+## 💻 System Requirements
 
-### Training Environment
+### For Training
 - **Platform**: Google Colab (free tier)
-- **GPU**: T4 GPU (as per requirements)
+- **GPU**: T4 GPU (recommended)
 - **Memory**: 12GB RAM
 - **Storage**: 2GB for dataset and models
 
-### Deployment Environment
+### For Deployment
 - **Platform**: Streamlit Cloud / Heroku / Railway
 - **Python**: 3.8+
 - **Memory**: 512MB+ RAM
 - **Dependencies**: See `requirements.txt`
 
-## 🎨 Example Outputs
+## 🎨 Generation Examples
 
 The GAN generates diverse, recognizable handwritten digits:
-
 - **Digit 0**: Oval shapes with variations in thickness and angle
 - **Digit 1**: Vertical lines with different slopes and styles
 - **Digit 2**: Curved and straight segments forming "2" shapes
 - **Digit 3**: Horizontal segments with right-side curves
 - **...and so on for digits 4-9**
 
-Each generation produces 5 unique variations that should be recognizable by ChatGPT-4o or human observers.
+Each generation produces 5 unique variations that are recognizable and diverse.
 
-## 🚨 Troubleshooting
+## 🔍 Troubleshooting
 
-### Model Not Found
-- Ensure `generator.pth` is in the same directory as `app.py`
-- Check file size (should be ~2-5MB)
-- If missing, app will use mock generation
+### Common Issues
 
-### Deployment Issues
-- Verify all files are committed to git
-- Check repository is public for Streamlit Cloud
-- Ensure `requirements.txt` has correct versions
+1. **Missing Model File**
+   - Ensure `generator.pth` is in the same directory as `app.py`
+   - Check file size (should be ~2-5MB)
+   - If missing, app will use mock generation
 
-### Memory Issues
-- Use CPU version of PyTorch: `torch==2.0.0+cpu`
-- Reduce batch size in training if needed
+2. **Deployment Issues**
+   - Verify all files are committed to git
+   - Check repository is public for Streamlit Cloud
+   - Ensure `requirements.txt` has correct versions
 
-## 📝 License
+3. **Memory Issues**
+   - Use CPU version of PyTorch: `torch==2.0.0+cpu`
+   - Reduce batch size in training if needed
+
+## 📄 License
 
 This project is for educational purposes. The MNIST dataset is publicly available and commonly used for machine learning research.
 
@@ -177,3 +190,13 @@ This project is for educational purposes. The MNIST dataset is publicly availabl
 - **PyTorch**: Facebook AI Research
 - **Streamlit**: Streamlit Inc.
 - **Training Platform**: Google Colab
+
+## 👤 Author
+
+**Chaitanya Maddala**
+- GitHub: [@chaitanya-maddala-236](https://github.com/chaitanya-maddala-236)
+- Project Link: [https://github.com/chaitanya-maddala-236/Handwritten-Digit-Generator-Using-GAN](https://github.com/chaitanya-maddala-236/Handwritten-Digit-Generator-Using-GAN)
+
+---
+
+⭐ If you found this project helpful, please give it a star on GitHub!
